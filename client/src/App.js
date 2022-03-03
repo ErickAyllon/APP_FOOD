@@ -1,9 +1,13 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import Home from "./Components/Home";
+import Landing from "./Components/Landing";
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
+      <Landing />
+      <Home />
     </div>
   );
 }
