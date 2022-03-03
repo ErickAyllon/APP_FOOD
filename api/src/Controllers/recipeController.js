@@ -41,71 +41,34 @@ const getDbInfo = async () => {
 };
 
 const getApiInfoById = async (id) => {
-  try {
-    const resultInfoId = await axios.get(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY1}`
-    );
-    const r = resultInfoId.data.results;
-
-    const recipeId = {
-      id: r.id,
-      title: r.title,
-      healthScore: r.healthScore,
-      dishTypes: r.dishTypes,
-      image: r.image,
-      summary: r.summary,
-      types: r.types,
-      steps: r.analyzedInstructions[0]?.steps.map((e) => {
-        return {
-          number: e.number,
-          step: e.step,
-        };
-      }),
-    };
-
-    return recipeId;
-  } catch (err) {
-    console.log(err);
-  }
+  return await axios.get(
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`
+  );
 };
 
-const getRecipeIdDb = async (id) => {
-  try {
-    const resultDb = await Recipe.findAll({
-      where: {
-        id: id,
+const getDbById = async (id) => {
+  return await Recipe.findByPk(id, {
+    include: {
+      model: Recipe,
+      atributes: ["title"],
+      through: {
+        atributes: [],
       },
-      include: Type,
-    });
-    const listType = resultDb[0].Type.map(temp.name);
-    return resultDb;
-  } catch (error) {
-    console.log(error);
-  }
+    },
+  });
 };
-
 const getAllRecipes = async () => {
-  const apiInfo = await getApiInfo();
+  const infoApi = await getApiInfo();
   const dbInfo = await getDbInfo();
-  const allInfo = apiInfo.concat(dbInfo);
+  const allInfo = infoApi.concat(dbInfo);
 
   return allInfo;
-};
-
-const searchForId = async (id) => {
-  const searchId = await getApiInfoById(id);
-  if (searchId) return searchId;
-  const db = await getDbInfo();
-  const searchDB = db.find((recipe) => recipe.id === id);
-  if (db) return searchDB;
-  return searchId;
 };
 
 module.exports = {
   getApiInfo,
   getDbInfo,
   getApiInfoById,
-  getRecipeIdDb,
+  getDbById,
   getAllRecipes,
-  searchForId,
 };
