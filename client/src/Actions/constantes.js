@@ -6,4 +6,4 @@ export const RECIPE_SEARCH = "RECIPE_SEARCH";
 export const RECIPE_DETAILS = "RECIPE_DETAILS";
 export const ADD_RECIPE = "ADD_RECIPE";
 export const GET_TYPES = "GET_TYPES";
-export const LOCAL_HOST = "http://localhost:3001/api/recipes";
+export const LOCAL_HOST = "http://localhost:3001/api";

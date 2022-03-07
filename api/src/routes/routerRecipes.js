@@ -45,7 +45,7 @@ router.get("/:id", async (req, res, next) => {
         let recipeDetails = {
           id: apiRecipesById.data.id,
           name: apiRecipesById.data.title,
-          dietTypes: apiRecipesById.data.diets,
+          dietTypes: apiRecipesById.data.diets.toUpperCase(),
           summary: apiRecipesById.data.summary,
           healthScore: apiRecipesById.data.healthScore, //nivel de comida saludable
           spoonacularScore: apiRecipesById.data.spoonacularScore, //puntuación de la pagina

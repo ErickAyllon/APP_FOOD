@@ -1,15 +1,15 @@
 const typeDietDb = [
-  "gluten free",
-  "ketogenic",
-  "vegetarian",
-  "lacto vegetarian",
-  "ovo vegetarian",
-  "vegan",
-  "pescetarian",
-  "paleo",
-  "primal",
-  "low fodmap",
-  "whole 30",
+  "Gluten free",
+  "Ketogenic",
+  "Vegetarian",
+  "Lacto vegetarian",
+  "Ovo vegetarian",
+  "Vegan",
+  "Pescetarian",
+  "Paleo",
+  "Primal",
+  "Low fodmap",
+  "Whole 30",
 ];
 
 module.exports = {
