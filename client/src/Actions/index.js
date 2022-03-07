@@ -32,6 +32,19 @@ export function getRecipesByName(payload) {
     }
   };
 }
+export function getDietTypes() {
+  return async function (dispatch) {
+    try {
+      var response = await axios.get(`${LOCAL_HOST}/api/types`);
+      return dispatch({
+        type: GET_TYPES,
+        payload: response.data.map((d) => d.name),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function addRecipe(payload) {
   return async function () {
