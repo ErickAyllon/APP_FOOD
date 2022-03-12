@@ -1,15 +1,17 @@
 import React from "react";
+import styles from "./RecipeCard.module.css";
 
 let prevId = 1;
 function RecipeCard(recipes) {
-  const { image, name, dietTypes } = recipes;
+  const { image, name, dietTypes, spoonacularScore } = recipes;
   return (
-    <div className="recipe">
-      <div>
-        <img className="recipeImg" src={image} alt="Not Found" />
+    <div className={styles.recipe}>
+      <div className={styles.detailRecipe}>
+        <img className={styles.recipeImg} src={image} alt="Not Found" />
+        <h2>{name}</h2>
       </div>
       <div>
-        <h2 className="recipeTitle">{name}</h2>
+        <h3>{spoonacularScore}</h3>
       </div>
 
       <div className="dietContainer">

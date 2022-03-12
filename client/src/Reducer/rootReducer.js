@@ -25,11 +25,9 @@ function rootReducer(state = initialState, action) {
         allRecipes: action.payload,
       };
     case DIET_TYPE_FILTER:
-      const allRecipes = state.allrecipes;
+      const allRecipes = state.allRecipes;
       const filteredByDietType = allRecipes.filter((r) =>
-        r.dietTypes?.some(
-          (d) => d.toLowerCase() === action.payload.toLowerCase()
-        )
+        r.diets?.some((d) => d.toLowerCase() === action.payload.toLowerCase())
       );
       return {
         ...state,
@@ -37,27 +35,27 @@ function rootReducer(state = initialState, action) {
       };
 
     case SORT_AZ:
-      let sortedRecipes = [...state.recipes];
-      sortedRecipes =
+      const sortedRecipes =
         action.payload === "atoz"
           ? state.recipes.sort((a, b) => {
-              if (a.title.toLowerCase() > b.title.toLowerCase()) {
+              if (a.name > b.name) {
                 return 1;
               }
-              if (a.title.toLowerCase() < b.title.toLowerCase()) {
+              if (a.name < b.name) {
                 return -1;
               }
               return 0;
             })
           : state.recipes.sort((a, b) => {
-              if (a.title.toLowerCase() < b.title.toLowerCase()) {
+              if (a.name < b.name) {
                 return 1;
               }
-              if (a.title.toLowerCase() > b.title.toLowerCase()) {
+              if (a.name > b.name) {
                 return -1;
               }
               return 0;
             });
+
       return { ...state, recipes: sortedRecipes };
 
     case SCORE_SORT:
@@ -65,19 +63,19 @@ function rootReducer(state = initialState, action) {
       sortedRecipesByScore =
         action.payload === "asc"
           ? state.recipes.sort((a, b) => {
-              if (a.score > b.score) {
+              if (a.spoonacularScore > b.spoonacularScore) {
                 return 1;
               }
-              if (a.score < b.score) {
+              if (a.spoonacularScore < b.spoonacularScore) {
                 return -1;
               }
               return 0;
             })
           : state.recipes.sort((a, b) => {
-              if (a.score < b.score) {
+              if (a.spoonacularScore < b.spoonacularScore) {
                 return 1;
               }
-              if (a.score > b.score) {
+              if (a.spoonacularScore > b.spoonacularScore) {
                 return -1;
               }
               return 0;

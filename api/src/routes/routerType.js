@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { API_KEY, API_KEY1 } = process.env;
 const { Type } = require("../db");
 const { typeDietDb } = require("../Controllers/typeController");
 

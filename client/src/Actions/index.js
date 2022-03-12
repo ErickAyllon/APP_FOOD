@@ -7,12 +7,14 @@ import {
   SORT_AZ,
   DIET_TYPE_FILTER,
   SCORE_SORT,
+  RECIPE_DETAILS,
 } from "./constantes.js";
 
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
       let recipes = await axios.get("http://localhost:3001/api/recipes");
+      console.log(recipes);
       return dispatch({
         type: GET_RECIPES,
         payload: recipes.data,
@@ -35,10 +37,10 @@ export function getRecipesByName(payload) {
 export function getDietTypes() {
   return async function (dispatch) {
     try {
-      var response = await axios.get(`${LOCAL_HOST}/api/types`);
+      var response = await axios.get(`${LOCAL_HOST}/types`);
       return dispatch({
         type: GET_TYPES,
-        payload: response.data.map((d) => d.name),
+        payload: response.data.map((d) => d.title),
       });
     } catch (error) {
       console.log(error);
@@ -47,21 +49,21 @@ export function getDietTypes() {
 }
 
 export function addRecipe(payload) {
-  return async function () {
-    try {
-      var response = await axios.post(`${LOCAL_HOST}`, payload);
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
+  return async function (dispatch) {
+    const response = await axios.post(`${LOCAL_HOST}/recipe`, payload);
+    return dispatch({
+      type: "POST_RECIPE",
+      payload: response.data,
+    });
   };
 }
 
 export function getRecipeDetails(payload) {
   return async function (dispatch) {
     try {
-      var response = await axios.get(`${LOCAL_HOST}/${payload}`);
-      return dispatch({ type: GET_TYPES, payload: response.data });
+      const response = await axios.get(`${LOCAL_HOST}/${payload}`);
+      console.log(response);
+      return dispatch({ type: RECIPE_DETAILS, payload: response.data });
     } catch (err) {
       console.log(err);
     }

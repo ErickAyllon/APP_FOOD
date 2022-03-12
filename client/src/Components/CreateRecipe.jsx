@@ -5,17 +5,17 @@ import { getDietTypes, addRecipe } from "../Actions/index";
 
 function validate(input) {
   const errors = {};
-  if (!input.name) errors.name = "Por favor introduce un nombre de receta";
+  if (!input.title) errors.title = "Por favor introduce un nombre de receta";
   if (!input.summary)
     errors.summary = "Por favor agregá un resumen de la receta";
-  if (input.score < 0 || input.score > 100)
-    errors.score = "Por favor ingresá un puntaje entre 0 y 100";
+  if (input.spoonacularScore < 0 || input.spoonacularScore > 100)
+    errors.spoonacularScore = "Por favor ingresá un puntaje entre 0 y 100";
   if (input.healthScore < 0 || input.healthScore > 100)
     errors.healthScore = "Por favor ingresá un puntaje de salud entre 0 y 100";
   if (!input.steps.length)
     errors.steps =
       "Por favor ingresá las instrucciones paso a paso de la receta";
-  if (!input.dietTypes)
+  if (!input.diets)
     errors.dietTypes =
       "Por favor ingresá el tipo de dieta que pertenece la receta";
   return errors;
@@ -23,14 +23,14 @@ function validate(input) {
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
-  const dietTypes = useSelector((state) => state.dietTypes);
+  const diets = useSelector((state) => state.diets);
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    name: "",
+    title: "",
     summary: "",
-    score: "",
-    healthScore: "",
+    spoonacularScore: 0,
+    healthScore: 0,
     steps: "",
     dietTypes: [],
   });
@@ -63,7 +63,7 @@ export default function CreateRecipe() {
     }
     setInput({
       ...input,
-      dietTypes: newArray,
+      diets: newArray,
     });
     const validations = validate(input);
     setErrors(validations);
@@ -72,12 +72,12 @@ export default function CreateRecipe() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (Object.values(errors).lenght > 0) {
+    if (Object.values(errors).length > 0) {
       alert("Por favor complete con la información requerida");
     } else if (
-      input.name === "" &&
+      input.title === "" &&
       input.summary === "" &&
-      input.score === "" &&
+      input.spoonacularScore === "" &&
       input.healthScore === "" &&
       input.steps === "" &&
       !input.dietTypes.length
@@ -87,11 +87,11 @@ export default function CreateRecipe() {
       dispatch(addRecipe(input));
       alert("Nueva receta agregada correctamente");
       setInput({
-        name: "",
+        title: "",
         summary: "",
-        score: "",
+        spoonacularScore: "",
         healthScore: "",
-        steps: [],
+        steps: "",
         dietTypes: [],
       });
       history.push("/home");
@@ -106,9 +106,10 @@ export default function CreateRecipe() {
             <div className="inputs">
               <label className="msgs"> Nombre:</label>
               <input
-                name="name"
+                id="msgs"
+                name="title"
                 type="text"
-                value={input.name}
+                value={input.title}
                 onChange={(e) => handleChange(e)}
               />
               {errors.name && <span className="errors">{errors.summary}</span>}
@@ -130,12 +131,14 @@ export default function CreateRecipe() {
             <div className="inputs">
               <label className="msgs">Puntuación:</label>
               <input
-                name="score"
+                name="spoonacularScore"
                 type="number"
-                value={input.score}
+                value={input.spoonacularScore}
                 onChange={(e) => handleChange(e)}
               />
-              {errors.score && <span className="errors">{errors.score}</span>}
+              {errors.spoonacularScore && (
+                <span className="errors">{errors.spoonacularScore}</span>
+              )}
             </div>
             <div className="inputs">
               <label className="msgs">Puntuación de Salud:</label>
@@ -149,8 +152,48 @@ export default function CreateRecipe() {
                 <span className="errors">{errors.healthScore}</span>
               )}
             </div>
+            <div className="inputs">
+              <label className="msgs">Paso a Paso:</label>
+              <textarea
+                name="steps"
+                type="text"
+                rows="4"
+                cols="40"
+                value={input.steps}
+                onChange={(e) => handleChange(e)}
+              />
+
+              {errors.steps && <span className="errors">{errors.steps}</span>}
+            </div>
+          </div>
+          <div className="checkSelect">
+            <label className="msgs">Tipo de dietas:</label>
+            {diets.map((d) => {
+              return (
+                <div key={d} className="checks">
+                  <label className="diets">{d}</label>
+                  <input
+                    className="checks"
+                    type="checkbox"
+                    name={d}
+                    value={d}
+                    selected={input.dietTypes.includes(d)}
+                    onChange={(e) => handleCheckBox(e)}
+                  />
+                </div>
+              );
+            })}
+            {errors.dietTypes && (
+              <span className="errors">{errors.dietTypes}</span>
+            )}
           </div>
         </div>
+        <button className="submitButton" type="submit">
+          Enviar Receta
+        </button>
+        <Link to="/home">
+          <button className="goBackButton">Regresar a Pagina Principal</button>
+        </Link>
       </form>
     </div>
   );

@@ -1,0 +1,11 @@
+/* .detailRecipe {
+  background-color: red;
+  overflow: hidden;
+  margin-right: 1px;
+  display: inline-block;
+} */
+.recipeImg {
+  width: 100%;
+
+  display: block;
+}

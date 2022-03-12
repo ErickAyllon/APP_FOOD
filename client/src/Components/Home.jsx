@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, alphabeticFilter, scoreSort } from "../Actions/index";
+import {
+  getRecipes,
+  alphabeticFilter,
+  scoreSort,
+  dietTypeFilter,
+} from "../Actions/index";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import Paginated from "./Paginated";
 import Recipe from "./RecipeCard";
+import styles from "./Home.module.css";
 
-let prevId = 1;
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-  const [order, setOrder] = useState("");
+  const [setOrder] = useState("");
   const [page, setPage] = useState(1);
-  const [recipesPage, setRecipesPage] = useState(9);
+  const [recipesPage] = useState(9);
   const quantityRecipesPage = page * recipesPage;
   const firstRecipePage = quantityRecipesPage - recipesPage;
   const showRecipesPage = allRecipes.slice(
@@ -47,8 +52,14 @@ export default function Home() {
     setOrder(`Order ${e.target.value}`);
   }
 
+  function handleTypeFilter(e) {
+    e.preventDefault();
+    dispatch(dietTypeFilter(e.target.value));
+    setPage(1);
+  }
+
   return (
-    <div className="Home">
+    <div className={styles.home}>
       <div>
         <button className="refreshButton" onClick={handleClick}>
           Actualizar recetas
@@ -73,7 +84,11 @@ export default function Home() {
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-        <select className="filters" name="diets">
+        <select
+          className="filters"
+          name="diets"
+          onChange={(e) => handleTypeFilter(e)}
+        >
           <option defaultValue>Tipos de Dietas</option>
           <option value="gluten free">Libre de Gluten</option>
           <option value="ketogenic">Keto</option>
@@ -97,10 +112,10 @@ export default function Home() {
       />
 
       <SearchBar />
-      <div className="allRecipes">
+      <div className={styles.allRecipes}>
         {showRecipesPage?.map((e) => {
           return (
-            <div className="eachRecipes" key={prevId++}>
+            <div className={styles.eachRecipes} key={e.id}>
               <Link className="linkRecipes" to={`home/${e.id}`} />
               <Recipe
                 image={
@@ -109,7 +124,8 @@ export default function Home() {
                     : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
                 }
                 name={e.name}
-                dietTypes={e.dietTypes}
+                // dietTypes={e.dietTypes}
+                // spoonacularScore={e.spoonacularScore}
               ></Recipe>
             </div>
           );

@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const axios = require("axios");
 const {
   getAllRecipes,
   getApiInfoById,
@@ -16,7 +15,6 @@ router.get("/", async (req, res) => {
       const recipeTitle = recipesTotal.filter((el) =>
         el.name.toLowerCase().includes(name.toLowerCase())
       );
-      console.log(recipeTitle);
       recipeTitle.length
         ? res.send(200, recipeTitle)
         : res.send(404, "No se encontró la receta");
@@ -44,7 +42,7 @@ router.get("/:id", async (req, res, next) => {
       if (apiRecipesById) {
         let recipeDetails = {
           id: apiRecipesById.data.id,
-          name: apiRecipesById.data.title,
+          title: apiRecipesById.data.title,
           dietTypes: apiRecipesById.data.diets.toUpperCase(),
           summary: apiRecipesById.data.summary,
           healthScore: apiRecipesById.data.healthScore, //nivel de comida saludable

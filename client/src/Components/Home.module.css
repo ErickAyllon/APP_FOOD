@@ -1,0 +1,34 @@
+.home {
+  display: flex;
+  background-color: #fffbe9;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding: 2rem;
+  margin: auto;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.allRecipes {
+  display: flex;
+  width: 1000px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.eachRecipes {
+  background-color: red;
+  float: left;
+  width: calc((100% - 20px) / 4);
+  margin-bottom: 20px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
