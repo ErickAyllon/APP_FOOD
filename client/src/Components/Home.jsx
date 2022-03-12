@@ -61,57 +61,59 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <div>
-        <button className="refreshButton" onClick={handleClick}>
-          Actualizar recetas
-        </button>
-        <Link to="/recipe">
-          <button className="AddButton">Agregar receta</button>
-        </Link>
+        <div className={styles.compo}>
+          <button className={styles.refreshButton} onClick={handleClick}>
+            <span>Actualizar recetas</span>
+          </button>
+          <Link to="/recipe">
+            <button className={styles.AddButton}>Agregar receta</button>
+          </Link>
+          <div className={styles.select}>
+            <label className={styles.filters}>Filtros:</label>
+            <select
+              className={styles.select}
+              name="AZ"
+              onChange={(e) => handleAZ(e)}
+            >
+              <option defaultValue>Orden</option>
+              <option value="atoz">A to Z</option>
+              <option value="zota">Z to A</option>
+            </select>
+            <select
+              className={styles.select}
+              name="numerical"
+              onChange={(e) => handleScoreSort(e)}
+            >
+              <option defaultValue>Puntaje</option>
+              <option value="asc">Ascendente</option>
+              <option value="desc">Descendente</option>
+            </select>
+            <select
+              className={styles.filters}
+              name="diets"
+              onChange={(e) => handleTypeFilter(e)}
+            >
+              <option defaultValue>Tipos de Dietas</option>
+              <option value="gluten free">Libre de Gluten</option>
+              <option value="ketogenic">Keto</option>
+              <option value="vegetarian">Vegetariano</option>
+              <option value="lacto vegetarian">Lacto-Vegetariano</option>
+              <option value="ovo vegetarian">Ovo-Vegetariano</option>
+              <option value="lacto ovo vegetarian">
+                Lacto-Ovo-Vegetariano
+              </option>
+              <option value="vegan">Vegaon</option>
+              <option value="pescetarian">Pescetariano</option>
+              <option value="paleolithic">Paleo</option>
+              <option value="primal">Primal</option>
+              <option value="low fodmap">Low FODMAP</option>
+              <option value="whole 30">Whole30</option>
+              <option value="dairy free">Libre de Lacteos</option>
+            </select>
+          </div>
+          <SearchBar />
+        </div>
       </div>
-      <div className="select">
-        <label className="filters">Filtros:</label>
-        <select className="select" name="AZ" onChange={(e) => handleAZ(e)}>
-          <option defaultValue>Orden</option>
-          <option value="atoz">A to Z</option>
-          <option value="zota">Z to A</option>
-        </select>
-        <select
-          className="select"
-          name="numerical"
-          onChange={(e) => handleScoreSort(e)}
-        >
-          <option defaultValue>Puntaje</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <select
-          className="filters"
-          name="diets"
-          onChange={(e) => handleTypeFilter(e)}
-        >
-          <option defaultValue>Tipos de Dietas</option>
-          <option value="gluten free">Libre de Gluten</option>
-          <option value="ketogenic">Keto</option>
-          <option value="vegetarian">Vegetariano</option>
-          <option value="lacto vegetarian">Lacto-Vegetariano</option>
-          <option value="ovo vegetarian">Ovo-Vegetariano</option>
-          <option value="lacto ovo vegetarian">Lacto-Ovo-Vegetariano</option>
-          <option value="vegan">Vegaon</option>
-          <option value="pescetarian">Pescetariano</option>
-          <option value="paleolithic">Paleo</option>
-          <option value="primal">Primal</option>
-          <option value="low fodmap">Low FODMAP</option>
-          <option value="whole 30">Whole30</option>
-          <option value="dairy free">Libre de Lacteos</option>
-        </select>
-      </div>
-      <Paginated
-        recipesPage={recipesPage}
-        allRecipes={allRecipes.length}
-        paged={paged}
-      />
-
-      <SearchBar />
       <div className={styles.allRecipes}>
         {showRecipesPage?.map((e) => {
           return (
@@ -124,8 +126,6 @@ export default function Home() {
                     : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
                 }
                 name={e.name}
-                // dietTypes={e.dietTypes}
-                // spoonacularScore={e.spoonacularScore}
               ></Recipe>
             </div>
           );

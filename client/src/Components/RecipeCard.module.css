@@ -6,6 +6,20 @@
 } */
 .recipeImg {
   width: 100%;
+  display: flex;
+  object-fit: contain;
+  object-position: 50% 50%;
+  margin-top: -2vh;
+}
 
-  display: block;
+.name {
+  height: 0px;
+  padding-bottom: 43px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  text-align: center;
+}
+.recipe > img {
+  margin-bottom: 39px;
 }

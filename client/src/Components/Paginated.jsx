@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../Components/paginated.module.css";
 
 function Paginated({ recipesPage, allRecipes, paged }) {
   const pages = [];
@@ -11,10 +12,10 @@ function Paginated({ recipesPage, allRecipes, paged }) {
       {pages.lenght <= 1 ? (
         <></>
       ) : (
-        <nav className="pagination">
-          <ul className="pages">
+        <nav className={styles.pagination}>
+          <div className={styles.pages}>
             {pages?.map((p) => (
-              <li className="page" key={p}>
+              <span className="page" key={p}>
                 <button
                   className="pageBtn"
                   onClick={() => paged(p)}
@@ -22,9 +23,9 @@ function Paginated({ recipesPage, allRecipes, paged }) {
                 >
                   {p}
                 </button>
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
         </nav>
       )}
     </div>

@@ -6,9 +6,10 @@ function RecipeCard(recipes) {
   const { image, name, dietTypes, spoonacularScore } = recipes;
   return (
     <div className={styles.recipe}>
-      <div className={styles.detailRecipe}>
+      <div>
         <img className={styles.recipeImg} src={image} alt="Not Found" />
-        <h2>{name}</h2>
+
+        <h4 className={styles.name}>{name}</h4>
       </div>
       <div>
         <h3>{spoonacularScore}</h3>
