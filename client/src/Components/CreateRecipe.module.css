@@ -1,0 +1,66 @@
+.containerCreate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  border-radius: 10px;
+  background-image: url("./Assets/createRecipebkg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  background-color: rgb(8, 10, 10);
+}
+
+.form {
+  /* background-color: #bc9898; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 125px;
+  border: solid 1px;
+  margin: 0px;
+  justify-items: end;
+  border-radius: 10px;
+  background-image: url("./Assets/createRecipebkg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: #abaaa8b3;
+}
+
+.inputs {
+  /* background-color: blue; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 17px;
+  width: 317px;
+}
+.inputText {
+  width: 309px;
+}
+
+.checkSelect {
+  width: 190px;
+  height: 254px;
+  border-radius: 3px;
+}
+
+.checks {
+  padding-right: 62px;
+}
+
+.span {
+  position: relative;
+  bottom: -70px;
+  font-size: 52px;
+}
+
+.button {
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e8e8e854;
+  border: 1px solid #0c060678;
+}

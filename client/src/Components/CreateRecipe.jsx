@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getDietTypes, addRecipe } from "../Actions/index";
+import styles from "./CreateRecipe.module.css";
 
 function validate(input) {
   const errors = {};
@@ -98,14 +99,15 @@ export default function CreateRecipe() {
     }
   }
   return (
-    <div>
-      <h1 className="msg"> Ingresá tu propia receta</h1>
+    <div className={styles.containerCreate}>
+      <span className={styles.span}> Ingresá tu propia receta</span>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form">
+        <div className={styles.form}>
           <div className="formPrettier">
-            <div className="inputs">
+            <div className={styles.inputs}>
               <label className="msgs"> Nombre:</label>
               <input
+                className={styles.inputText}
                 id="msgs"
                 name="title"
                 type="text"
@@ -114,9 +116,10 @@ export default function CreateRecipe() {
               />
               {errors.name && <span className="errors">{errors.summary}</span>}
             </div>
-            <div className="inputs">
+            <div className={styles.inputs}>
               <label className="msgs"> Resumen:</label>
               <textarea
+                className={styles.inputText}
                 name="summary"
                 type="text"
                 rows="4"
@@ -128,9 +131,10 @@ export default function CreateRecipe() {
                 <span className="errors">{errors.summary}</span>
               )}
             </div>
-            <div className="inputs">
+            <div className={styles.inputs}>
               <label className="msgs">Puntuación:</label>
               <input
+                className={styles.inputText}
                 name="spoonacularScore"
                 type="number"
                 value={input.spoonacularScore}
@@ -140,9 +144,10 @@ export default function CreateRecipe() {
                 <span className="errors">{errors.spoonacularScore}</span>
               )}
             </div>
-            <div className="inputs">
+            <div className={styles.inputs}>
               <label className="msgs">Puntuación de Salud:</label>
               <input
+                className={styles.inputText}
                 name="healthScore"
                 type="number"
                 value={input.healthScore}
@@ -152,7 +157,7 @@ export default function CreateRecipe() {
                 <span className="errors">{errors.healthScore}</span>
               )}
             </div>
-            <div className="inputs">
+            <div className={styles.inputs}>
               <label className="msgs">Paso a Paso:</label>
               <textarea
                 name="steps"
@@ -166,20 +171,20 @@ export default function CreateRecipe() {
               {errors.steps && <span className="errors">{errors.steps}</span>}
             </div>
           </div>
-          <div className="checkSelect">
+          <div className={styles.checkSelect}>
             <label className="msgs">Tipo de dietas:</label>
             {diets.map((d) => {
               return (
                 <div key={d} className="checks">
-                  <label className="diets">{d}</label>
                   <input
-                    className="checks"
+                    className={styles.checks}
                     type="checkbox"
                     name={d}
                     value={d}
                     selected={input.dietTypes.includes(d)}
                     onChange={(e) => handleCheckBox(e)}
                   />
+                  <label className="diets">{d}</label>
                 </div>
               );
             })}
@@ -187,13 +192,17 @@ export default function CreateRecipe() {
               <span className="errors">{errors.dietTypes}</span>
             )}
           </div>
+          <div className={styles.buttonSpan}>
+            <button className={styles.button} type="submit">
+              Enviar Receta
+            </button>
+            <Link to="/home">
+              <button className={styles.button}>
+                Regresar a Pagina Principal
+              </button>
+            </Link>
+          </div>
         </div>
-        <button className="submitButton" type="submit">
-          Enviar Receta
-        </button>
-        <Link to="/home">
-          <button className="goBackButton">Regresar a Pagina Principal</button>
-        </Link>
       </form>
     </div>
   );

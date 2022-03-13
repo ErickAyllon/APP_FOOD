@@ -25,19 +25,19 @@ function SearchBar() {
     <div className={styles.search}>
       <input
         type="text"
-        className="searchInput"
-        placeholder="Buscar Receta"
+        className={styles.searchInput}
+        placeholder=""
         value={input}
         onChange={(e) => {
           handleChange(e);
         }}
       />
       <button
-        className="searchButton"
+        className={styles.searchButton}
         type="submit"
         onClick={(e) => handleSubmit(e)}
       >
-        Buscar
+        <h5 className={styles.namePosition}>Buscar</h5>
       </button>
     </div>
   );

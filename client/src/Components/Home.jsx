@@ -61,15 +61,16 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <div>
-        <div className={styles.compo}>
+        <span className={styles.spanNav}>
           <button className={styles.refreshButton} onClick={handleClick}>
             <span>Actualizar recetas</span>
           </button>
           <Link to="/recipe">
             <button className={styles.AddButton}>Agregar receta</button>
           </Link>
+        </span>
+        <div className={styles.compo}>
           <div className={styles.select}>
-            <label className={styles.filters}>Filtros:</label>
             <select
               className={styles.select}
               name="AZ"
@@ -89,7 +90,7 @@ export default function Home() {
               <option value="desc">Descendente</option>
             </select>
             <select
-              className={styles.filters}
+              className={styles.select}
               name="diets"
               onChange={(e) => handleTypeFilter(e)}
             >

@@ -17,7 +17,7 @@ function Paginated({ recipesPage, allRecipes, paged }) {
             {pages?.map((p) => (
               <span className="page" key={p}>
                 <button
-                  className="pageBtn"
+                  className={styles.pageBtn}
                   onClick={() => paged(p)}
                   style={{ width: "30px" }}
                 >
