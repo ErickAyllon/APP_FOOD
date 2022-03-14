@@ -27,7 +27,9 @@ function rootReducer(state = initialState, action) {
     case DIET_TYPE_FILTER:
       const allRecipes = state.allRecipes;
       const filteredByDietType = allRecipes.filter((r) =>
-        r.diets?.some((d) => d.toLowerCase() === action.payload.toLowerCase())
+        r.dietTypes?.some(
+          (d) => d.toLowerCase() === action.payload.toLowerCase()
+        )
       );
       return {
         ...state,

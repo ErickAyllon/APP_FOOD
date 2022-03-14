@@ -54,8 +54,8 @@ export default function CreateRecipe() {
   }
 
   function handleCheckBox(e) {
-    let newArray = input.dietTypes;
-    let find = newArray.indexOf(e.target.value);
+    const newArray = input.dietTypes;
+    const find = newArray.indexOf(e.target.value);
 
     if (find >= 0) {
       newArray.splice(find, 1);
@@ -100,10 +100,20 @@ export default function CreateRecipe() {
   }
   return (
     <div className={styles.containerCreate}>
-      <span className={styles.span}> Ingresá tu propia receta</span>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.form}>
-          <div className="formPrettier">
+          <span className={styles.span}> Ingresá tu propia receta</span>
+          <div className={styles.buttonSpan}>
+            <button className={styles.button} type="submit">
+              Enviar Receta
+            </button>
+            <Link to="/home">
+              <button className={styles.button}>
+                Regresar a Pagina Principal
+              </button>
+            </Link>
+          </div>
+          <div className={styles.formPrettier}>
             <div className={styles.inputs}>
               <label className="msgs"> Nombre:</label>
               <input
@@ -191,16 +201,6 @@ export default function CreateRecipe() {
             {errors.dietTypes && (
               <span className="errors">{errors.dietTypes}</span>
             )}
-          </div>
-          <div className={styles.buttonSpan}>
-            <button className={styles.button} type="submit">
-              Enviar Receta
-            </button>
-            <Link to="/home">
-              <button className={styles.button}>
-                Regresar a Pagina Principal
-              </button>
-            </Link>
           </div>
         </div>
       </form>

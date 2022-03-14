@@ -14,7 +14,6 @@ export const getRecipes = () => {
   return async (dispatch) => {
     try {
       let recipes = await axios.get("http://localhost:3001/api/recipes");
-      console.log(recipes);
       return dispatch({
         type: GET_RECIPES,
         payload: recipes.data,
@@ -27,7 +26,7 @@ export const getRecipes = () => {
 export function getRecipesByName(payload) {
   return async function (dispatch) {
     try {
-      var response = await axios.get(`${LOCAL_HOST}/recipes?name=${payload}`);
+      let response = await axios.get(`${LOCAL_HOST}/recipes?name=${payload}`);
       return dispatch({ type: RECIPE_SEARCH, payload: response.data });
     } catch (err) {
       alert("Recipe by name not found");
@@ -37,7 +36,7 @@ export function getRecipesByName(payload) {
 export function getDietTypes() {
   return async function (dispatch) {
     try {
-      var response = await axios.get(`${LOCAL_HOST}/types`);
+      let response = await axios.get(`${LOCAL_HOST}/types`);
       return dispatch({
         type: GET_TYPES,
         payload: response.data.map((d) => d.title),
@@ -62,7 +61,6 @@ export function getRecipeDetails(payload) {
   return async function (dispatch) {
     try {
       const response = await axios.get(`${LOCAL_HOST}/${payload}`);
-      console.log(response);
       return dispatch({ type: RECIPE_DETAILS, payload: response.data });
     } catch (err) {
       console.log(err);

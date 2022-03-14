@@ -15,7 +15,7 @@ import styles from "./Home.module.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-  const [setOrder] = useState("");
+  const [order, setOrder] = useState("");
   const [page, setPage] = useState(1);
   const [recipesPage] = useState(9);
   const quantityRecipesPage = page * recipesPage;
@@ -52,12 +52,11 @@ export default function Home() {
     setOrder(`Order ${e.target.value}`);
   }
 
-  function handleTypeFilter(e) {
+  function handleDietTypeFilter(e) {
     e.preventDefault();
     dispatch(dietTypeFilter(e.target.value));
     setPage(1);
   }
-
   return (
     <div className={styles.home}>
       <div>
@@ -89,27 +88,26 @@ export default function Home() {
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
+            <label>Tipo de dietas</label>
             <select
               className={styles.select}
               name="diets"
-              onChange={(e) => handleTypeFilter(e)}
+              onChange={(e) => handleDietTypeFilter(e)}
             >
-              <option defaultValue>Tipos de Dietas</option>
-              <option value="gluten free">Libre de Gluten</option>
-              <option value="ketogenic">Keto</option>
-              <option value="vegetarian">Vegetariano</option>
-              <option value="lacto vegetarian">Lacto-Vegetariano</option>
-              <option value="ovo vegetarian">Ovo-Vegetariano</option>
-              <option value="lacto ovo vegetarian">
-                Lacto-Ovo-Vegetariano
-              </option>
-              <option value="vegan">Vegaon</option>
-              <option value="pescetarian">Pescetariano</option>
+              <option defaultValue="select">Select...</option>
+              <option value="Gluten free">Gluten Free</option>
+              <option value="Ketogenic">Keto</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="lacto vegetarian">Lacto-Vegetarian</option>
+              <option value="ovo vegetarian">Ovo-Vegetarian</option>
+              <option value="lacto ovo vegetarian">Lacto-Ovo-Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="pescetarian">Pescetarian</option>
               <option value="paleolithic">Paleo</option>
               <option value="primal">Primal</option>
               <option value="low fodmap">Low FODMAP</option>
               <option value="whole 30">Whole30</option>
-              <option value="dairy free">Libre de Lacteos</option>
+              <option value="dairy free">Dairy Free</option>
             </select>
           </div>
           <SearchBar />
