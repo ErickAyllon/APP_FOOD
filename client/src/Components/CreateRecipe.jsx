@@ -6,7 +6,7 @@ import styles from "./CreateRecipe.module.css";
 
 function validate(input) {
   const errors = {};
-  if (!input.title) errors.title = "Por favor introduce un nombre de receta";
+  if (!input.name) errors.name = "Por favor introduce un nombre de receta";
   if (!input.summary)
     errors.summary = "Por favor agregá un resumen de la receta";
   if (input.spoonacularScore < 0 || input.spoonacularScore > 100)
@@ -28,7 +28,7 @@ export default function CreateRecipe() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    title: "",
+    name: "",
     summary: "",
     spoonacularScore: 0,
     healthScore: 0,
@@ -76,7 +76,7 @@ export default function CreateRecipe() {
     if (Object.values(errors).length > 0) {
       alert("Por favor complete con la información requerida");
     } else if (
-      input.title === "" &&
+      input.name === "" &&
       input.summary === "" &&
       input.spoonacularScore === "" &&
       input.healthScore === "" &&
@@ -88,7 +88,7 @@ export default function CreateRecipe() {
       dispatch(addRecipe(input));
       alert("Nueva receta agregada correctamente");
       setInput({
-        title: "",
+        name: "",
         summary: "",
         spoonacularScore: "",
         healthScore: "",
@@ -119,12 +119,12 @@ export default function CreateRecipe() {
               <input
                 className={styles.inputText}
                 id="msgs"
-                name="title"
+                name="name"
                 type="text"
-                value={input.title}
+                value={input.name}
                 onChange={(e) => handleChange(e)}
               />
-              {errors.name && <span className="errors">{errors.summary}</span>}
+              {errors.name && <span className="errors">{errors.name}</span>}
             </div>
             <div className={styles.inputs}>
               <label className="msgs"> Resumen:</label>

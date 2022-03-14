@@ -43,7 +43,7 @@ router.get("/:id", async (req, res, next) => {
         let recipeDetails = {
           id: apiRecipesById.data.id,
           title: apiRecipesById.data.title,
-          dietTypes: apiRecipesById.data.diets.toUpperCase(),
+          dietTypes: apiRecipesById.data.diets,
           summary: apiRecipesById.data.summary,
           healthScore: apiRecipesById.data.healthScore, //nivel de comida saludable
           spoonacularScore: apiRecipesById.data.spoonacularScore, //puntuación de la pagina
@@ -55,7 +55,7 @@ router.get("/:id", async (req, res, next) => {
             };
           }),
         };
-        return res.send(200, recipeDetails);
+        return res.status(200).json(recipeDetails);
       }
     }
   } catch (err) {

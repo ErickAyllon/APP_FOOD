@@ -60,7 +60,7 @@ export function addRecipe(payload) {
 export function getRecipeDetails(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${LOCAL_HOST}/${payload}`);
+      const response = await axios.get(`${LOCAL_HOST}/recipes/${payload}`);
       return dispatch({ type: RECIPE_DETAILS, payload: response.data });
     } catch (err) {
       console.log(err);

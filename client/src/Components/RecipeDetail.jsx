@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetails } from "../Actions/index.js";
 import styles from "./RecipeDetail.module.css";
+import { Link } from "react-router-dom";
 
 export default function RecipeDetail(props) {
   const dispatch = useDispatch();
   const id = props.match.params.id;
+  console.log(id);
 
   useEffect(() => {
-    dispatch(getRecipeDetails(props));
+    dispatch(getRecipeDetails(id));
   }, [dispatch, id]);
 
-  const recipeDetails = useSelector((state) => state.recipeDetails);
+  const recipeDetails = useSelector((state) => state.recipeDetail);
   console.log(recipeDetails);
   return (
     <div className={styles.details} key={id}>
@@ -25,8 +27,58 @@ export default function RecipeDetail(props) {
           }
           alt="imageRecipe not found"
         />
-        <h1 className={styles.texts}>{recipeDetails.name}</h1>
       </div>
+      <h1 className={styles.texts}>{recipeDetails.name}</h1>
+
+      <div className="ddsh">
+        <h2 className="texts">Diet Type: </h2>
+        {recipeDetails.dietTypes
+          ? recipeDetails.dietTypes.map((e) => {
+              return (
+                <h2 className="dishesanddiets" key={e}>
+                  {e}
+                </h2>
+              );
+            })
+          : recipeDetails.diets?.map((e) => {
+              return (
+                <h2 className="dishesanddiets" key={e.name}>
+                  {e.name}
+                </h2>
+              );
+            })}
+      </div>
+
+      <div className="ddsh">
+        <h3 className="texts">Summary: </h3>
+        <p className="summary">
+          {recipeDetails.summary?.replace(/<[^>]*>/g, "")}
+        </p>
+      </div>
+
+      <div className="ddsh">
+        <h3 className="scores">Score: {recipeDetails.spoonacularScore}</h3>
+        <h3 className="scores">
+          Healthiness points: {recipeDetails.healthScore}
+        </h3>
+      </div>
+
+      <div className="ddsh">
+        <h3 className="texts">Steps: </h3>
+        <ul className="steps">
+          {Array.isArray(recipeDetails.steps) ? (
+            recipeDetails.steps.map((e) => {
+              return <li key={e.number}>{e.step}</li>;
+            })
+          ) : (
+            <li>{recipeDetails.steps}</li>
+          )}
+        </ul>
+      </div>
+
+      <Link to="/home">
+        <button className="backButton">Go back to recipes</button>
+      </Link>
     </div>
   );
 }

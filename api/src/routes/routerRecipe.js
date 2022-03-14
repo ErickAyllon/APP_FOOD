@@ -5,11 +5,11 @@ const router = Router();
 
 router.post("/", async (req, res, next) => {
   try {
-    let { title, summary, healthScore, dietTypes, spoonacularScore, steps } =
+    let { name, summary, healthScore, dietTypes, spoonacularScore, steps } =
       req.body;
 
     const newRecipe = await Recipe.create({
-      title,
+      name,
       summary,
       healthScore,
       spoonacularScore,
@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
       dietTypes,
     });
     let dietTypesRecipeDb = await Type.findAll({
-      where: { title },
+      where: { name },
     });
 
     newRecipe.addType(dietTypesRecipeDb);

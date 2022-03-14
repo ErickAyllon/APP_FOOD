@@ -117,15 +117,16 @@ export default function Home() {
         {showRecipesPage?.map((e) => {
           return (
             <div className={styles.eachRecipes} key={e.id}>
-              <Link className="linkRecipes" to={`home/${e.id}`} />
-              <Recipe
-                image={
-                  e.image
-                    ? e.image
-                    : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
-                }
-                name={e.name}
-              ></Recipe>
+              <Link className={styles.linkRecipes} to={`home/${e.id}`}>
+                <Recipe
+                  image={
+                    e.image
+                      ? e.image
+                      : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
+                  }
+                  name={e.name}
+                ></Recipe>
+              </Link>
             </div>
           );
         })}
