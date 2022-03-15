@@ -17,52 +17,79 @@
   display: flex;
   align-items: flex-start;
   padding: 30px;
-  width: 82vw;
-  height: 78vh;
+  width: 92vw;
+  height: 91vh;
   background-size: cover;
   background: #abaaa8e0;
   position: relative;
-  top: 7%;
+  top: 5%;
   flex-direction: column;
+}
+.texts {
+  font-size: 24px;
+  width: 365px;
 }
 
 .img {
-  width: 479px;
-  height: 320px;
+  width: 357px;
+  height: 250px;
   object-fit: cover;
   border-radius: 5px;
 }
 
 .containerSummary {
   position: absolute;
-  width: 574px;
-  right: 103px;
-  top: 93px;
+  width: 804px;
+  right: 28px;
+  top: 85px;
   font-size: 95%;
+  height: 265px;
+  box-sizing: border-box;
 }
-
+.textTypes {
+  margin-top: 3px;
+}
 .containerScore {
   position: relative;
-  left: 614px;
-  bottom: 210px;
+  left: 78px;
+  bottom: -12px;
+  font-size: 83%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .containerSteps {
   position: relative;
-  bottom: 210px;
-  left: 616px;
-  width: 574px;
-  height: 165px;
+  bottom: 120px;
+  left: 399px;
+  width: 952px;
+  height: 292px;
   font-size: 95%;
+  box-sizing: border-box;
 }
 
 .backButton {
   position: relative;
-  bottom: 220px;
   color: #090909;
   padding: 0.7em 1.7em;
   font-size: 18px;
   border-radius: 0.5em;
   background: #e8e8e859;
   border: 1px solid #e8e8e8;
+  bottom: 162px;
+  left: 59px;
+}
+
+.dietTypes {
+  display: flex;
+  flex-direction: column;
+  font-size: 60%;
+  align-items: stretch;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  left: 430px;
+  top: 113px;
+  margin: 0px;
 }

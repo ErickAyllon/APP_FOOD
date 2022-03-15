@@ -7,14 +7,13 @@ import { Link } from "react-router-dom";
 export default function RecipeDetail(props) {
   const dispatch = useDispatch();
   const id = props.match.params.id;
-  console.log(id);
 
   useEffect(() => {
     dispatch(getRecipeDetails(id));
   }, [dispatch, id]);
 
   const recipeDetails = useSelector((state) => state.recipeDetail);
-  console.log(recipeDetails);
+
   return (
     <div className={styles.details} key={id}>
       <div className={styles.containerDetails}>
@@ -31,14 +30,22 @@ export default function RecipeDetail(props) {
           />
         </div>
 
-        <div className="ddsh">
-          <h2 className="texts">Diet Type: </h2>
+        <div className={styles.dietTypes}>
+          <h2 className={styles.textTypes}>Diet Type: </h2>
           {recipeDetails.dietTypes
             ? recipeDetails.dietTypes.map((e) => {
-                return <h2 key={e}>{e[0].toUpperCase() + e.slice(1)}</h2>;
+                return (
+                  <h2 className={styles.textTypes} key={e}>
+                    {e[0].toUpperCase() + e.slice(1)}
+                  </h2>
+                );
               })
             : recipeDetails.diets?.map((e) => {
-                return <h2 key={e.name}>{e.name}</h2>;
+                return (
+                  <h2 className={styles.textTypes} key={e.name}>
+                    {e.name}
+                  </h2>
+                );
               })}
         </div>
 
