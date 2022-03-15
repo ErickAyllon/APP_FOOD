@@ -1,0 +1,68 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border-radius: 10px;
+  background-image: url("./Assets/createRecipebkg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  background-color: rgb(8, 10, 10);
+}
+
+.containerDetails {
+  display: flex;
+  align-items: flex-start;
+  padding: 30px;
+  width: 82vw;
+  height: 78vh;
+  background-size: cover;
+  background: #abaaa8e0;
+  position: relative;
+  top: 7%;
+  flex-direction: column;
+}
+
+.img {
+  width: 479px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.containerSummary {
+  position: absolute;
+  width: 574px;
+  right: 103px;
+  top: 93px;
+  font-size: 95%;
+}
+
+.containerScore {
+  position: relative;
+  left: 614px;
+  bottom: 210px;
+}
+
+.containerSteps {
+  position: relative;
+  bottom: 210px;
+  left: 616px;
+  width: 574px;
+  height: 165px;
+  font-size: 95%;
+}
+
+.backButton {
+  position: relative;
+  bottom: 220px;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e8e8e859;
+  border: 1px solid #e8e8e8;
+}
