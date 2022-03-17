@@ -62,10 +62,10 @@ export default function Home() {
       <div>
         <span className={styles.spanNav}>
           <button className={styles.refreshButton} onClick={handleClick}>
-            <span>Actualizar recetas</span>
+            <span>Clear filters</span>
           </button>
           <Link to="/recipe">
-            <button className={styles.AddButton}>Agregar receta</button>
+            <button className={styles.AddButton}>Add recipe</button>
           </Link>
         </span>
         <div className={styles.compo}>
@@ -75,7 +75,7 @@ export default function Home() {
               name="AZ"
               onChange={(e) => handleAZ(e)}
             >
-              <option defaultValue>Orden</option>
+              <option defaultValue>Order</option>
               <option value="atoz">A to Z</option>
               <option value="zota">Z to A</option>
             </select>
@@ -84,17 +84,18 @@ export default function Home() {
               name="numerical"
               onChange={(e) => handleScoreSort(e)}
             >
-              <option defaultValue>Puntaje</option>
-              <option value="asc">Ascendente</option>
+              <option defaultValue>Score</option>
+              <option value="asc">Upward</option>
               <option value="desc">Descendente</option>
             </select>
-            <label>Tipo de dietas</label>
             <select
               className={styles.select}
               name="diets"
               onChange={(e) => handleDietTypeFilter(e)}
             >
-              <option defaultValue="all"> All</option>
+              <option disabled selected>
+                Diet Types
+              </option>
               <option value="Gluten free">Gluten Free</option>
               <option value="Ketogenic">Keto</option>
               <option value="Vegetarian">Vegetarian</option>

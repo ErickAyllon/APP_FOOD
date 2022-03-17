@@ -17,13 +17,14 @@
   display: flex;
   align-items: flex-start;
   padding: 30px;
-  width: 92vw;
-  height: 91vh;
+  width: 90vw;
+  height: 84vh;
   background-size: cover;
   background: #abaaa8e0;
   position: relative;
-  top: 5%;
+  top: 6%;
   flex-direction: column;
+  border-radius: 5px;
 }
 .texts {
   font-size: 24px;
@@ -35,6 +36,7 @@
   height: 250px;
   object-fit: cover;
   border-radius: 5px;
+  border: solid 1px #01010133;
 }
 
 .containerSummary {
