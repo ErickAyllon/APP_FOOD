@@ -29,7 +29,6 @@
   background: #e0e0e0;
   margin: 10px;
   overflow: hidden;
-  float: left;
   width: calc((100% - 35px) / 4);
   margin-bottom: 20px;
   flex: none;
@@ -74,4 +73,7 @@
 .linkRecipes {
   text-decoration: none;
   color: black;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }

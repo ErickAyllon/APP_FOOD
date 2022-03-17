@@ -9,7 +9,7 @@ function Paginated({ recipesPage, allRecipes, paged }) {
 
   return (
     <div>
-      {pages.lenght <= 1 ? (
+      {pages.length <= 1 ? (
         <></>
       ) : (
         <nav className={styles.pagination}>

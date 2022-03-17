@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      dietTypes: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
       image: {
         type: DataTypes.STRING,
         allowNull: true,

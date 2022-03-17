@@ -26,7 +26,7 @@ export const getRecipes = () => {
 export function getRecipesByName(payload) {
   return async function (dispatch) {
     try {
-      let response = await axios.get(`/recipes?name=${payload}`);
+      let response = await axios.get(`/api/recipes?name=${payload}`);
       return dispatch({ type: RECIPE_SEARCH, payload: response.data });
     } catch (err) {
       alert("Recipe by name not found");
@@ -36,7 +36,7 @@ export function getRecipesByName(payload) {
 export function getDietTypes() {
   return async function (dispatch) {
     try {
-      let response = await axios.get(`/types`);
+      let response = await axios.get(`/api/types`);
       return dispatch({
         type: GET_TYPES,
         payload: response.data.map((d) => d.title),
@@ -49,7 +49,7 @@ export function getDietTypes() {
 
 export function addRecipe(payload) {
   return async function (dispatch) {
-    const response = await axios.post(`/recipe`, payload);
+    const response = await axios.post(`/api/recipe`, payload);
     return dispatch({
       type: "POST_RECIPE",
       payload: response.data,
@@ -60,7 +60,7 @@ export function addRecipe(payload) {
 export function getRecipeDetails(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/recipes/${payload}`);
+      const response = await axios.get(`/api/recipes/${payload}`);
       return dispatch({ type: RECIPE_DETAILS, payload: response.data });
     } catch (err) {
       console.log(err);

@@ -94,7 +94,7 @@ export default function Home() {
               name="diets"
               onChange={(e) => handleDietTypeFilter(e)}
             >
-              <option defaultValue="select">Select...</option>
+              <option defaultValue="all"> All</option>
               <option value="Gluten free">Gluten Free</option>
               <option value="Ketogenic">Keto</option>
               <option value="Vegetarian">Vegetarian</option>
@@ -125,6 +125,7 @@ export default function Home() {
                       : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
                   }
                   name={e.name}
+                  dietTypes={e.dietTypes}
                 ></Recipe>
               </Link>
             </div>

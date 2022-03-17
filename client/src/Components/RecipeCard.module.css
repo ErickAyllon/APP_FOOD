@@ -1,15 +1,18 @@
-/* .detailRecipe {
-  background-color: red;
-  overflow: hidden;
-  margin-right: 1px;
-  display: inline-block;
-} */
+.dietContainer {
+  display: grid;
+  justify-items: center;
+}
 .recipeImg {
+  height: 200px;
   width: 100%;
+}
+.recipe {
   display: flex;
-  object-fit: contain;
-  object-position: 50% 50%;
-  margin-top: -25%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.containerImg {
+  width: 100%;
 }
 
 .name {
@@ -17,10 +20,13 @@
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 0px;
+  padding-top: 5px;
   text-align: center;
   margin-top: 10px;
 }
-.recipe > img {
-  margin-bottom: 39px;
+
+.containerName {
+  border-bottom: 1px solid #abaaa87a;
+  margin: 10px 21px;
+  padding-bottom: 11px;
 }

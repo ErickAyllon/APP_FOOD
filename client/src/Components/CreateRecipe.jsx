@@ -34,6 +34,7 @@ export default function CreateRecipe() {
     healthScore: 0,
     steps: "",
     dietTypes: [],
+    image: "",
   });
 
   useEffect(() => {
@@ -94,6 +95,7 @@ export default function CreateRecipe() {
         healthScore: "",
         steps: "",
         dietTypes: [],
+        image: "",
       });
       history.push("/home");
     }

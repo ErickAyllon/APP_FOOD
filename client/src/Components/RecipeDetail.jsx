@@ -17,7 +17,7 @@ export default function RecipeDetail(props) {
   return (
     <div className={styles.details} key={id}>
       <div className={styles.containerDetails}>
-        <h1 className={styles.texts}>{recipeDetails.title}</h1>
+        <h1 className={styles.texts}>{recipeDetails.name}</h1>
         <div className={styles.containerImage}>
           <img
             className={styles.img}
@@ -64,7 +64,6 @@ export default function RecipeDetail(props) {
         </div>
 
         <div className={styles.containerSteps}>
-          <h3 className="texts">Steps: </h3>
           <ul className="steps">
             {Array.isArray(recipeDetails.steps) ? (
               recipeDetails.steps.map((e) => {

@@ -6,16 +6,14 @@ function RecipeCard(recipes) {
   const { image, name, dietTypes, spoonacularScore } = recipes;
   return (
     <div className={styles.recipe}>
-      <div>
+      <div className={styles.containerImg}>
         <img className={styles.recipeImg} src={image} alt="Not Found" />
-
+      </div>
+      <div className={styles.containerName}>
         <h4 className={styles.name}>{name}</h4>
       </div>
-      <div>
-        <h3>{spoonacularScore}</h3>
-      </div>
 
-      <div className="dietContainer">
+      <div className={styles.dietContainer}>
         {dietTypes?.map((e) => {
           return (
             <h5 className="diets" key={prevId++}>
