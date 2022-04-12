@@ -49,7 +49,13 @@ export function getDietTypes() {
 
 export function addRecipe(payload) {
   return async function (dispatch) {
+    console.log("este es el payload", payload);
+    console.log("este es el name", payload.name);
+    console.log("este es el dietType", payload.dietTypes);
+    //let dietTypesString = payload.dietTypes.toString("");
+    // console.log("este es el dietType string", dietTypesString);
     const response = await axios.post(`/api/recipe`, payload);
+
     return dispatch({
       type: "POST_RECIPE",
       payload: response.data,

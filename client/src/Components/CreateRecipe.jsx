@@ -33,7 +33,7 @@ export default function CreateRecipe() {
     spoonacularScore: 0,
     healthScore: 0,
     steps: "",
-    dietTypes: [],
+    dietTypes: "",
     image: "",
   });
 
@@ -94,7 +94,7 @@ export default function CreateRecipe() {
         spoonacularScore: "",
         healthScore: "",
         steps: "",
-        dietTypes: [],
+        dietTypes: "",
         image: "",
       });
       history.push("/home");
