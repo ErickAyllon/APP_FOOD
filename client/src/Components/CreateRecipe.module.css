@@ -27,8 +27,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background: #abaaa8b3;
-  position: relative;
-  top: 20%;
 }
 
 .inputs {
@@ -47,18 +45,12 @@
   width: 140px;
   height: 255px;
   border-radius: 3px;
-  position: relative;
-  right: 440px;
 }
 
 .checks {
   padding-right: 62px;
 }
 .formPrettier {
-  position: relative;
-  right: 140px;
-  margin: 0;
-  padding: 0;
 }
 
 .span {

@@ -42,14 +42,14 @@ export default function Home() {
     e.preventDefault();
     dispatch(alphabeticFilter(e.target.value));
     setPage(1);
-    setOrder(`Order ${e.target.value}`);
+    setOrder(e.target.value);
   }
 
   function handleScoreSort(e) {
     e.preventDefault();
     dispatch(scoreSort(e.target.value));
     setPage(1);
-    setOrder(`Order ${e.target.value}`);
+    setOrder(e.target.value);
   }
 
   function handleDietTypeFilter(e) {
@@ -75,7 +75,6 @@ export default function Home() {
               name="AZ"
               onChange={(e) => handleAZ(e)}
             >
-              <option defaultValue>Order</option>
               <option value="atoz">A to Z</option>
               <option value="zota">Z to A</option>
             </select>
@@ -83,19 +82,18 @@ export default function Home() {
               className={styles.select}
               name="numerical"
               onChange={(e) => handleScoreSort(e)}
+              value={order}
             >
               <option defaultValue>Score</option>
-              <option value="asc">Upward</option>
-              <option value="desc">Descendente</option>
+              <option value="asc">0-100</option>
+              <option value="desc">100-0</option>
             </select>
             <select
               className={styles.select}
               name="diets"
               onChange={(e) => handleDietTypeFilter(e)}
             >
-              <option disabled selected>
-                Diet Types
-              </option>
+              <option value="All">All</option>
               <option value="Gluten free">Gluten Free</option>
               <option value="Ketogenic">Keto</option>
               <option value="Vegetarian">Vegetarian</option>
@@ -126,6 +124,7 @@ export default function Home() {
                       : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
                   }
                   name={e.name}
+                  spoonacularScore={e.spoonacularScore}
                   dietTypes={e.dietTypes}
                 ></Recipe>
               </Link>

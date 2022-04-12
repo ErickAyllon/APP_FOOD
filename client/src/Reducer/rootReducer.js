@@ -26,11 +26,14 @@ function rootReducer(state = initialState, action) {
       };
     case DIET_TYPE_FILTER:
       const allRecipes = state.allRecipes;
-      const filteredByDietType = allRecipes.filter((r) =>
-        r.dietTypes?.some(
-          (d) => d.toLowerCase() === action.payload.toLowerCase()
-        )
-      );
+      const filteredByDietType =
+        action.payload === "All"
+          ? allRecipes
+          : allRecipes.filter((r) =>
+              r.dietTypes?.some(
+                (d) => d.toLowerCase() === action.payload.toLowerCase()
+              )
+            );
       return {
         ...state,
         recipes: filteredByDietType,
@@ -93,9 +96,14 @@ function rootReducer(state = initialState, action) {
         recipes: action.payload,
       };
     case RECIPE_DETAILS:
+      if (action.payload.length) {
+        var obj = action.payload[0];
+      } else {
+        obj = action.payload;
+      }
       return {
         ...state,
-        recipeDetail: action.payload,
+        recipeDetail: obj,
       };
     case ADD_RECIPE:
       return {

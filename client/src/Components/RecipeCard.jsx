@@ -11,6 +11,7 @@ function RecipeCard(recipes) {
       </div>
       <div className={styles.containerName}>
         <h4 className={styles.name}>{name}</h4>
+        <h4>{spoonacularScore}</h4>
       </div>
 
       <div className={styles.dietContainer}>
