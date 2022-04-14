@@ -14,6 +14,7 @@ const initialState = {
   allRecipes: [],
   diets: [],
   recipeDetail: [],
+  isLoading: true,
 };
 
 function rootReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: action.payload,
         allRecipes: action.payload,
+        isLoading: false,
       };
     case DIET_TYPE_FILTER:
       const allRecipes = state.allRecipes;
@@ -104,6 +106,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipeDetail: obj,
+        isLoading: false,
       };
     case ADD_RECIPE:
       return {

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetails } from "../Actions/index.js";
 import styles from "./RecipeDetail.module.css";
 import { Link } from "react-router-dom";
+import Loader from "./Loader.jsx";
 
 export default function RecipeDetail(props) {
   const dispatch = useDispatch();
   const id = props.match.params.id;
+  const isLoading = useSelector((state) => state.isLoading);
 
   useEffect(() => {
     dispatch(getRecipeDetails(id));
@@ -14,7 +16,9 @@ export default function RecipeDetail(props) {
 
   const recipeDetails = useSelector((state) => state.recipeDetail);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={styles.details} key={id}>
       <div className={styles.containerDetails}>
         <h1 className={styles.texts}>{recipeDetails.name}</h1>
@@ -29,7 +33,6 @@ export default function RecipeDetail(props) {
             alt="imageRecipe not found"
           />
         </div>
-
         <div className={styles.dietTypes}>
           <h2 className={styles.textTypes}>Diet Type: </h2>
           {recipeDetails.dietTypes
@@ -48,21 +51,18 @@ export default function RecipeDetail(props) {
                 );
               })}
         </div>
-
         <div className={styles.containerSummary}>
           <h3 className="texts">Summary: </h3>
           <p className={styles.summary}>
             {recipeDetails.summary?.replace(/<[^>]*>/g, "")}
           </p>
         </div>
-
         <div className={styles.containerScore}>
           <h3 className="scores">Score: {recipeDetails.spoonacularScore}</h3>
           <h3 className="scores">
             Healthiness points: {recipeDetails.healthScore}
           </h3>
         </div>
-
         <div className={styles.containerSteps}>
           <ul className="steps">
             {Array.isArray(recipeDetails.steps) ? (
@@ -74,7 +74,6 @@ export default function RecipeDetail(props) {
             )}
           </ul>
         </div>
-
         <Link to="/home">
           <button className={styles.backButton}>Go back to recipes</button>
         </Link>

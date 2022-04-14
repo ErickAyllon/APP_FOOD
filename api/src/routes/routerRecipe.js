@@ -16,11 +16,11 @@ router.post("/", async (req, res, next) => {
       steps,
       dietTypes,
     });
-    let dietTypesRecipeDb = await Type.findAll({
-      where: { name },
-    });
+    // let dietTypesRecipeDb = await Type.findAll({
+    //   where: { name },
+    // });
 
-    newRecipe.addType(dietTypesRecipeDb);
+    //newRecipe.addType(dietTypesRecipeDb);
     res.send(200, newRecipe);
   } catch (err) {
     next(err);
