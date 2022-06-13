@@ -8,8 +8,9 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.UUID,
-        primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
@@ -28,8 +29,8 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       steps: {
-        type: DataTypes.TEXT,
-        allowNull: false,
+        type: DataTypes.STRING,
+
       },
       dietTypes: {
         type: DataTypes.ARRAY(DataTypes.STRING),

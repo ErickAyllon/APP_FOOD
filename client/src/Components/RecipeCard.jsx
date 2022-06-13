@@ -1,29 +1,40 @@
 import React from "react";
 import styles from "./RecipeCard.module.css";
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
 let prevId = 1;
 function RecipeCard(recipes) {
   const { image, name, dietTypes, spoonacularScore } = recipes;
   return (
-    <div className={styles.recipe}>
-      <div className={styles.containerImg}>
-        <img className={styles.recipeImg} src={image} alt="Not Found" />
-      </div>
-      <div className={styles.containerName}>
-        <h4 className={styles.name}>{name}</h4>
-        <h4>{spoonacularScore}</h4>
-      </div>
-
-      <div className={styles.dietContainer}>
-        {dietTypes?.map((e) => {
-          return (
-            <h5 className="diets" key={prevId++}>
-              {e[0].toUpperCase() + e.slice(1)}
-            </h5>
-          );
-        })}
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image={image}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {spoonacularScore}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {dietTypes}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      {/* <CardActions>
+        <a href="https://www.google.com" target="_blank"><Button size="small">Learn More</Button></a>
+      </CardActions> */}
+    </Card>
   );
 }
 

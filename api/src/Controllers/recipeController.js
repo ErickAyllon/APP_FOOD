@@ -1,23 +1,46 @@
 const axios = require("axios");
 const { Recipe, Type } = require("../db");
+const jsonBack = require("./jsonback")
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5 } =
   process.env;
 
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
-  );
 
-  const apiInfo = await apiUrl.data.results.map((r) => {
+
+  // try {
+
+  //   jsonBack.map(async (e) => {
+  //     let newRecipe = await Recipe.create({
+  //       id: e.id,
+  //       name: e.name,
+  //       dietTypes: e.dietTypes,
+  //       summary: e.summary,
+  //       healthScore: e.healthScore, //nivel de comida saludable
+  //       spoonacularScore: e.healthScore, //puntuación de la pagina
+  //       image: e.image,
+  //       steps: e.steps?.map((r) => {
+  //         return {
+  //           number: r.number,
+  //           step: r.step,
+  //         };
+  //       }),
+  //     })
+
+  //     console.log("base de datos actualizada")
+  //   })
+  // } catch (error) {
+  //   console.log(error)
+  // }
+  const apiInfo = jsonBack.map((r) => {
     return {
       id: r.id,
-      name: r.title,
-      dietTypes: r.diets,
+      name: r.name,
+      dietTypes: r.dietTypes,
       summary: r.summary,
       healthScore: r.healthScore, //nivel de comida saludable
-      spoonacularScore: r.spoonacularScore, //puntuación de la pagina
+      spoonacularScore: r.healthScore, //puntuación de la pagina
       image: r.image,
-      steps: r.analyzedInstructions[0]?.steps.map((r) => {
+      steps: r.steps?.map((r) => {
         return {
           number: r.number,
           step: r.step,
@@ -50,7 +73,7 @@ const getDbInfo = async () => {
 
 const getApiInfoById = async (id) => {
   return await axios.get(
-    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
   );
 };
 

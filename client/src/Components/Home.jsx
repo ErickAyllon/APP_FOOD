@@ -12,6 +12,7 @@ import Paginated from "./Paginated";
 import Recipe from "./RecipeCard";
 import styles from "./Home.module.css";
 import Loader from "./Loader";
+import RecipeCard from "./RecipeCard";
 
 export default function Home() {
   const isLoading = useSelector((state) => state.isLoading);
@@ -26,6 +27,8 @@ export default function Home() {
     firstRecipePage,
     quantityRecipesPage
   );
+
+  console.log(showRecipesPage)
   const paged = function (pageNumber) {
     setPage(pageNumber);
   };
@@ -60,94 +63,17 @@ export default function Home() {
     setPage(1);
   }
   return (
-    <>
-      <div className={styles.home}>
-        <div>
-          <span className={styles.spanNav}>
-            <button className={styles.refreshButton} onClick={handleClick}>
-              <span>Clear filters</span>
-            </button>
-            <Link to="/recipe">
-              <button className={styles.AddButton}>Add recipe</button>
-            </Link>
-          </span>
-
-          <div className={styles.compo}>
-            <div className={styles.select}>
-              <select
-                className={styles.select}
-                name="AZ"
-                onChange={(e) => handleAZ(e)}
-              >
-                <option value="atoz">A to Z</option>
-                <option value="zota">Z to A</option>
-              </select>
-              <select
-                className={styles.select}
-                name="numerical"
-                onChange={(e) => handleScoreSort(e)}
-                value={order}
-              >
-                <option defaultValue>Score</option>
-                <option value="asc">0-100</option>
-                <option value="desc">100-0</option>
-              </select>
-              <select
-                className={styles.select}
-                name="diets"
-                onChange={(e) => handleDietTypeFilter(e)}
-              >
-                <option value="All">All</option>
-                <option value="Gluten free">Gluten Free</option>
-                <option value="Ketogenic">Keto</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="lacto vegetarian">Lacto-Vegetarian</option>
-                <option value="ovo vegetarian">Ovo-Vegetarian</option>
-                <option value="lacto ovo vegetarian">
-                  Lacto-Ovo-Vegetarian
-                </option>
-                <option value="Vegan">Vegan</option>
-                <option value="pescetarian">Pescetarian</option>
-                <option value="paleolithic">Paleo</option>
-                <option value="primal">Primal</option>
-                <option value="low fodmap">Low FODMAP</option>
-                <option value="whole 30">Whole30</option>
-                <option value="dairy free">Dairy Free</option>
-              </select>
-            </div>
-            <SearchBar />
-          </div>
-        </div>
-        <div className={styles.allRecipes}>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            showRecipesPage?.map((e) => {
-              return (
-                <div className={styles.eachRecipes} key={e.id}>
-                  <Link className={styles.linkRecipes} to={`home/${e.id}`}>
-                    <Recipe
-                      image={
-                        e.image
-                          ? e.image
-                          : `https://64.media.tumblr.com/fe5c1fa749cba141d1b248fe8b1ff66b/tumblr_p3848qU6Aw1s01xbbo1_500.png`
-                      }
-                      name={e.name}
-                      spoonacularScore={e.spoonacularScore}
-                      dietTypes={e.dietTypes}
-                    ></Recipe>
-                  </Link>
-                </div>
-              );
-            })
-          )}
-        </div>
-        <Paginated
-          recipesPage={recipesPage}
-          allRecipes={allRecipes.length}
-          paged={paged}
-        />
-      </div>
-    </>
+    <div className="home__content">
+      {
+        showRecipesPage?.map((el) => {
+          return (
+            <RecipeCard
+              image={el.image}
+              name={el.name}
+              dietTypes={el.dietTypes} 
+              spoonacularScore={el.healthScore}/>
+          )
+        })}
+    </div>
   );
 }
